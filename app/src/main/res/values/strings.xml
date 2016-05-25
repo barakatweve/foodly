@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Foodly</string>
+    <string name="action_settings">Settings</string>
+    <string name="next">next</string>
+    <string name="home" />
+    <string name="home2" />
+    <string name="home3" />
+    <string name="openDrawer" />
+    <string name="closeDrawer" />
+    <string name="logout">Logout</string>
+    <string name="title_activity_order">order</string>
+</resources>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.becks.materia">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/foodlyicon"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".splashScreen"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".HomeMenu" />
+        <activity android:name=".Register" />
+        <activity android:name=".restauraunts.chips" />
+        <activity android:name=".restauraunts.wali" />
+        <activity android:name=".restauraunts.tambi" />
+        <activity android:name=".restaurants" />
+        <activity android:name=".orders.OrderChips" />
+        <activity android:name=".IDM.Idm" />
+        <activity android:name=".restauraunts.idmChips$idmWali" />
+        <activity android:name=".restauraunts.idmChips" />
+        <activity android:name=".orders.OrderWali" />
+        <activity android:name=".orders.OrderTambi" />
+        <activity android:name=".restauraunts.pilau" />
+        <activity android:name=".orders.OrderPilau" />
+        <activity android:name=".IDM.Idm$displayListView" />
+        <activity android:name=".restauraunts.Ugali" />
+        <activity android:name=".orders.orderUgali" />
+        <activity android:name=".cafteria.cafteria" />
+        <activity android:name=".restauraunts.walinyama" />
+        <activity android:name=".restauraunts.walikuku" />
+        <activity android:name=".restauraunts.ugali" />
+        <activity android:name=".cafteria.cafteriamenu" />
+        <activity android:name=".muso.Muso" />
+        <activity android:name=".muso.musomenu" />
+        <activity android:name=".restauraunts.chipskavu" />
+        <activity android:name=".muso.chipskavuMuso" />
+        <activity android:name=".restauraunts.walinyamaMuso" />
+        <activity android:name=".restauraunts.tambinyamaMuso" />
+        <activity android:name=".cafteria.walikukucafe" />
+        <activity android:name=".cafteria.tambinyamacafe" />
+        <activity android:name=".share" />
+        <activity android:name=".cafteria.walinyamacafe" />
+        <activity android:name=".cafteria.chipskavucafe" />
+        <activity android:name=".aboutus" />
+        <activity android:name=".writeus" />
+        <activity android:name=".editProfil" />
+        <activity android:name=".restauraunts.tambinyama" />
+        <activity
+            android:name=".order"
+            android:label="@string/title_activity_order"
+            android:theme="@style/AppTheme"></activity>
+    </application>
+
+</manifest>

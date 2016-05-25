@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+    <!--<include layout="@layout/appbar"/>-->
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:id="@+id/cv">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+
+            android:id="@+id/relative">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:id="@+id/fid"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@+id/visitUs"
+                android:layout_marginEnd="84dp"
+                android:layout_alignParentTop="true"
+                android:layout_above="@+id/textView4" />
+
+            <TextView
+                android:textAlignment="center"
+                android:src="@drawable/idmtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/foodtype"
+                android:textSize="20dp"
+                android:textColor="#ff201602"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@+id/textView4"
+                android:layout_marginStart="63dp"
+                android:layout_alignBottom="@+id/fid"
+                android:layout_marginTop="43dp"
+                android:layout_alignParentTop="true" />
+
+            <TextView
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:text="View Menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/visitUs"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@+id/foodtype"
+                android:layout_alignStart="@+id/price"
+                android:layout_alignTop="@+id/price" />
+
+            <TextView
+                android:textSize="15dp"
+                android:padding="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/price"
+                android:textColor="#000000"
+                android:text=" Min Cost 1500/="
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:paddingTop="4dp"
+                android:textColor="#000000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delivery
+ Within 60Mins "
+                android:id="@+id/textView4"
+                android:layout_alignTop="@+id/visitUs"
+                android:layout_alignParentStart="true" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>

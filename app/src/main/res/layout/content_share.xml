@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.becks.materia.share">
+    <include layout="@layout/app_bar2"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Share With Friends"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:padding="10dp"
+        android:gravity="center"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/colorPrimaryDark"
+        android:textColorHighlight="@color/colorPrimary"
+        android:paddingTop="50dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textShare"
+            android:hint="Share messages with friends" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:textColor="#ffffff"
+        android:id="@+id/buttonShare"
+        android:layout_marginTop="20dp"
+        android:text="Share"
+        android:background="#00e676"/>
+
+</LinearLayout>

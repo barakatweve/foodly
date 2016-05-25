@@ -1,0 +1,93 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="10dp"
+    android:orientation="vertical"
+    android:weightSum="1">
+<include layout="@layout/appbar"
+    android:layout_width="wrap_content"
+    android:layout_height="80dp"/>
+    <EditText
+        android:singleLine="true"
+        android:textColorHint="#414141"
+        android:layout_marginTop="20dp"
+        android:hint="firstname"
+        android:id="@+id/etfirstName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        />
+    <EditText
+        android:singleLine="true"
+        android:textColorHint="#414141"
+        android:hint="lastname"
+        android:id="@+id/etlastName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        />
+
+    <EditText
+        android:singleLine="true"
+        android:textColorHint="#414141"
+        android:hint="email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/email" />
+
+
+    <EditText
+        android:singleLine="true"
+        android:textColorHint="#414141"
+        android:hint="Phonenumber"
+        android:inputType="number"
+        android:id="@+id/et_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        />
+    <EditText
+        android:singleLine="true"
+        android:textColorHint="#414141"
+        android:hint="hostelname and room number."
+        android:id="@+id/ethostelName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        />
+
+    <EditText
+        android:singleLine="true"
+        android:textColorHint="#414141"
+        android:hint="password"
+        android:inputType="textPassword"
+        android:id="@+id/et_pass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        />
+    <EditText
+        android:singleLine="true"
+        android:textColorHint="#414141"
+        android:hint="Confirm password"
+        android:inputType="textPassword"
+        android:id="@+id/et_confirmpass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        />
+
+
+    <Button
+        android:background="#ff3446"
+        android:onClick="registerUser"
+        android:text="Register"
+        android:id="@+id/RegisteButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#f9f2f2"
+        android:layout_weight="0.25" />
+    </LinearLayout>

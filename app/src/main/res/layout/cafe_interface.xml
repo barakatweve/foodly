@@ -1,0 +1,28 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="40dp"
+    tools:context=".MainActivity">
+    <include layout="@layout/app_bar2"/>
+    <TextView
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:paddingTop="60dp"
+        android:paddingBottom="50dp"
+        android:text="WELCOME TO CAFTERIA FOOD SERVICE
+VIEW OUR AVAILABE MENU "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViews"/>
+
+    <Button
+        android:background="#009688"
+        android:text="displayLIstview"
+        android:onClick="cafeDisplay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn2"/>
+
+</LinearLayout>
+

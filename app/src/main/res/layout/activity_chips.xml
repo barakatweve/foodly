@@ -1,0 +1,30 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="10dp"
+    android:orientation="vertical">
+
+        <include
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            layout="@layout/appbar"/>
+        <TextView
+            android:textSize="40dp"
+            android:paddingTop="40dp"
+            android:textColor="#ffff299f"
+            android:text="Available Menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+        <ListView
+            android:paddingTop="20dp"
+            android:id="@+id/listView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+        </ListView>
+
+</LinearLayout>

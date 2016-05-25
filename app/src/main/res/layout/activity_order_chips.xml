@@ -1,0 +1,133 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="10dp"
+    android:orientation="vertical"
+    android:weightSum="1">
+    <include
+        layout="@layout/app_bar2"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:id="@+id/backHome" />
+
+    <Button
+        android:background="#009688"
+        android:textSize="40dp"
+        android:onClick="minus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:id="@+id/minus"
+        android:layout_below="@+id/textView3"
+        android:layout_alignEnd="@+id/txt_total"
+        android:layout_marginTop="47dp" />
+
+    <Button
+        android:background="#009688"
+        android:textSize="40dp"
+       android:text="+"
+        android:onClick="Add"
+        android:layout_alignParentRight="true"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/plus"
+        android:layout_alignTop="@+id/minus"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:textColor="#FF3446"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_number"
+        android:text="0"
+        android:layout_alignBottom="@+id/minus"
+        android:layout_toStartOf="@+id/plus"
+        android:layout_alignTop="@+id/plus" />
+
+    <TextView
+        android:textColor="#000"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" Basic  Price for Plain chips with deliver costs=TSHS 1800"
+        android:id="@+id/textView3"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="55dp"
+        android:layout_below="@+id/backHome"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="60dp" />
+
+    <TextView
+        android:textSize="20dp"
+        android:textColor="#000000"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_total"
+        android:layout_marginTop="49dp"
+        android:text="Total TSh:"
+        android:layout_below="@+id/minus"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:inputType="number"
+        android:textColorHint="#414141"
+        android:hint="enter phoneNumber"
+        android:paddingTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_phonenumber"
+        android:layout_below="@+id/txt_total"
+        android:layout_alignStart="@+id/minus"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:singleLine="true"
+        android:textColorHint="#414141"
+        android:hint="enter your location"
+        android:paddingTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_location"
+        android:layout_below="@+id/txt_phonenumber"
+        android:layout_alignStart="@+id/txt_phonenumber"
+        android:layout_alignEnd="@+id/txt_phonenumber" />
+
+    <Button
+        android:background="#009688"
+        android:onClick="placeOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Place your order"
+        android:id="@+id/btn_placeOrder"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:textColor="#000000"
+        android:textAlignment="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/theTotals"
+        android:layout_above="@+id/txt_phonenumber"
+        android:layout_alignTop="@+id/txt_total"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/txt_total"
+        android:layout_alignStart="@+id/textView5" />
+
+    <TextView
+        android:textSize="20dp"
+        android:textColor="#ffff299f"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="Quantity"
+        android:id="@+id/textView5"
+        android:layout_alignTop="@+id/txt_number"
+        android:layout_alignBottom="@+id/txt_number"
+        android:layout_marginEnd="48dp"
+        android:layout_toStartOf="@+id/plus" />
+</RelativeLayout>
