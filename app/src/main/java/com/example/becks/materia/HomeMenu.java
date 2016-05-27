@@ -1,6 +1,8 @@
 package com.example.becks.materia;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.support.design.widget.NavigationView;
@@ -16,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.becks.materia.adapters.myFragmentApdater;
@@ -35,10 +38,12 @@ public class HomeMenu extends AppCompatActivity {
         setContentView(R.layout.activity_home_menu);
         Toolbar toolbar= (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //toolbar.setTitle("Home Menu");
-        // to swipe the views
+        SharedPreferences  sharedpreferences=getSharedPreferences("USERS", Context.MODE_PRIVATE);
+       String uname= sharedpreferences.getString("fName", "");
+        String uemail= sharedpreferences.getString("Emails","");
+      // to swipe the views
         ViewPager vpager= (ViewPager) findViewById(R.id.vpager);
-// to add the pager of the fragment
+         // to add the pager of the fragment
         this.addPagers(vpager);
         // to set the Tabs
         TabLayout tabs= (TabLayout) findViewById(R.id.tabs);
@@ -47,8 +52,15 @@ public class HomeMenu extends AppCompatActivity {
         // to set the pagers on the tabs
         tabs.setupWithViewPager(vpager);
         tabs.setOnTabSelectedListener(tabsListener(vpager));
-      //  tabs.setTabTextColors(ColorStateList.valueOf(Color.WHITE));
         navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        // to access navigation view
+        View headerview = navigationView.inflateHeaderView(R.layout.navheader);
+        TextView username = (TextView) headerview.findViewById(R.id.fname);
+        TextView email = (TextView) headerview.findViewById(R.id.email);
+
+        username.setText(uname);
+        email.setText(uemail);
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             // This method will trigger on item Click of navigation menu
             @Override
@@ -171,6 +183,10 @@ public class HomeMenu extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.logout:
+                SharedPreferences sharedpreferences=getSharedPreferences("USERS", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.clear();
+                editor.commit();
                 startActivity(new Intent(this, MainActivity.class));
                 return true;
             default:

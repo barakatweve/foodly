@@ -18,7 +18,7 @@ VIEW OUR AVAILABE MENU "
 
      <Button
          android:background="#009688"
-        android:text="displayLIstview"
+        android:text="View Menu"
         android:onClick="displayList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

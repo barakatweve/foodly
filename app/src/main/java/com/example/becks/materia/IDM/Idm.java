@@ -39,7 +39,7 @@ import java.util.List;
 public class Idm extends AppCompatActivity {
         Context context;
     String myjresul=null;
-    private String url = "http://myfirstdatabase.esy.es/fetchData.php";
+    private String url = "http://foodly.pe.hu/api/appsripts/fetchData.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +49,7 @@ public class Idm extends AppCompatActivity {
 
 
        }
+    // the method to fetch data from Server
 
     public void getData() {
         class GetDataJSON extends AsyncTask<String, Void, String> {
@@ -59,10 +60,6 @@ public class Idm extends AppCompatActivity {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-//                progressDialog=new ProgressDialog(context);
-//                progressDialog.setTitle("Dowloading data");
-//                progressDialog.setMessage("Please wait...");
-//                progressDialog.show();
 
             }
 
@@ -82,7 +79,7 @@ public class Idm extends AppCompatActivity {
                             }
                         }
                         else{
-                            Toast.makeText(context,"no data readed",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context,"no data reloaded",Toast.LENGTH_SHORT).show();
                         }
 
                         bufferedReader.close();

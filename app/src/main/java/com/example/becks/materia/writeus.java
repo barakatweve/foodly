@@ -26,7 +26,7 @@ public class writeus extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setTitle("Write To Raven");
+        getSupportActionBar().setTitle("Foodly |Give us your C");
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.back));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

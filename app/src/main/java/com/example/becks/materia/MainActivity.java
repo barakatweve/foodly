@@ -40,9 +40,10 @@ public class MainActivity extends AppCompatActivity {
     private TextView txtRegister;
     private String password,name,method;
     private String s=null;
-    private  String myemail;
+    private  String uID;
      private int userID;
     private String phone,fname,location;
+    private String myemail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -202,12 +203,12 @@ public class MainActivity extends AppCompatActivity {
                 // to get all jsonsdataint count
                 //
                 JSONObject jsonObject = new JSONObject(s);
-                myemail = jsonObject.getString("U_ID");
-                 userID= Integer.parseInt(myemail);
+                uID = jsonObject.getString("U_ID");
+                 userID= Integer.parseInt(uID);
                 phone= jsonObject.getString("Phone");
                 location = jsonObject.getString("Location");
                 fname = jsonObject.getString("Fname");
-
+                myemail = jsonObject.getString("Email");
 
                 //    writing on the shared Preference file
 
@@ -217,6 +218,8 @@ public class MainActivity extends AppCompatActivity {
                 editor.putString("Location",location).toString();
                 editor.putString("Phone",phone).toString();
                 editor.putInt("U_ID",userID);
+                editor.putString("Emails",myemail);
+
                 // editor.putString("Location", address).toString();
                 editor.commit();
 

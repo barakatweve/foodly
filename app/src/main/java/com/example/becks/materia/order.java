@@ -33,15 +33,16 @@ import java.net.URLEncoder;
 
 public class order extends AppCompatActivity {
     // fetching order from the server
-    private String url = "http://myfirstdatabase.esy.es/fetchData.php";
+    // private String url = "http://foodly.pe.hu/api/appsripts/fetchData.php";
     private String jsonResult;
     private JSONArray jsonArray;
     private String id;
     TextView txtname, txtlocation, txttotal, txtphone;
-    private String name,phone,location,fname;
+    private String name, phone, location, fname;
     private String s;
     private String methods;
     private String myemail;
+    private int us_IDs;
     private int us_ID;
 
     @Override
@@ -54,9 +55,12 @@ public class order extends AppCompatActivity {
         txtlocation = (TextView) findViewById(R.id.Location);
         txttotal = (TextView) findViewById(R.id.total);
         txtphone = (TextView) findViewById(R.id.phone);
+        SharedPreferences sharedPreferences=getSharedPreferences("USERS",MODE_PRIVATE);
+        String test=sharedPreferences.getString("fName"," ");
+        txtname.setText(test);
 
-        OrderBackground();
-        readJson();
+        //        OrderBackground();
+//        readJson();
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -68,145 +72,147 @@ public class order extends AppCompatActivity {
             }
         });
     }
-
-
-    void OrderBackground() {
-
-
-        class logBg extends AsyncTask<String, Void, String> {
-            // constructor to for this backgrond
-            ProgressDialog pDialog;
-            Context context;
-            AlertDialog alertDialog;
-
-            logBg(Context context) {
-                this.context = context;
-                pDialog = new ProgressDialog(context);
-                pDialog.setTitle("Connecting....");
-                pDialog.setMessage("PLease wait ...");
-                pDialog.setIndeterminate(true);
-                pDialog.setCancelable(true);
-                pDialog.show();
-            }
-
-            @Override
-            protected void onPreExecute() {
-                alertDialog = new AlertDialog.Builder(context).create();
-                alertDialog.setTitle("Connecting to the Services");
-            }
-
-
-            @Override
-            protected String doInBackground(String... params) {
-                String url_login = "http://foodly.pe.hu/api/appsripts/login.php"; // for login verification
-
-
-                methods = params[0];
-                int userID = Integer.parseInt(params[1]);
-
-                try {
-                    URL url = new URL(url_login);
-                    try {
-                        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                        urlConnection.setRequestMethod("POST");
-                        urlConnection.setDoOutput(true);
-                        urlConnection.setDoInput(true);
-                        OutputStream os = urlConnection.getOutputStream();
-                        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-                        String dataLogin =
-                                URLEncoder.encode("userID", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(userID), "UTF-8");
-                        bw.write(dataLogin);
-                        bw.flush();
-                        bw.close();
-                        os.close();
-                        // to get the response
-                        InputStream inputStream = urlConnection.getInputStream();
-                        BufferedReader br = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
-                        String line = "";
-                        String response = "";
-                        while ((line = br.readLine()) != null) {
-                            response += line;
-
-
-                        }
-                        inputStream.close();
-                        br.close();
-                        urlConnection.disconnect();
-                        return response;
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                }
-
-
-                return null;
-
-            }
-
-            @Override
-            protected void onPostExecute(String result) {
-                s = result.trim();
-                // when the details from the php script is
-                if (!s.equalsIgnoreCase("failure")) {
-                    pDialog.dismiss();
-                    TextView ed= (TextView) findViewById(R.id.fname);
-                    //ed.setText(us_ID +" " + " " + fname+" "+ phone);
-                    ed.setText(s);
-
-                }
-
-
-            }
-        }
-        logBg  logBack=new logBg(this);
-        logBack.execute(methods, String.valueOf(us_ID));
-        //  readJson();
-    }
-
-
-
-
-
-    void readJson() {
-        if (s !=null) {
-
-
-            // try to get json data from the server and saving them on the shared preference
-            try {
-                // to pass json objects
-                // jsonArray = jsonObject.getJSONArray("result");
-                // to get all jsonsdataint count
-                //
-                JSONObject jsonObject = new JSONObject(s);
-                myemail = jsonObject.getString("U_ID");
-                us_ID= Integer.parseInt(myemail);
-                phone= jsonObject.getString("Phone");
-                location = jsonObject.getString("Location");
-                fname = jsonObject.getString("Fname");
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-
-//        } else {
-//            Toast.makeText(this, "null data", Toast.LENGTH_LONG).show();
-
-        }
-    }
-
-
 }
 
+// the method to view the  order on  background
 
-
-
-
-
-
-
-
+//    void OrderBackground() {
+//
+//    class logBg extends AsyncTask<String, Void, String> {
+//                // constructor to for this backgrond
+//                ProgressDialog pDialog;
+//                Context context;
+//                AlertDialog alertDialog;
+//
+//                logBg(Context context) {
+//                    this.context = context;
+//                    pDialog = new ProgressDialog(context);
+//                    pDialog.setTitle("Connecting....");
+//                    pDialog.setMessage("PLease wait ...");
+//                    pDialog.setIndeterminate(true);
+//                    pDialog.setCancelable(true);
+//                    pDialog.show();
+//                }
+//
+//                @Override
+//                protected void onPreExecute() {
+//                    alertDialog = new AlertDialog.Builder(context).create();
+//                    alertDialog.setTitle("Connecting to the Services");
+//                }
+//
+//
+//                @Override
+//                protected String doInBackground(String... params) {
+//                    String url_login = "http://foodly.pe.hu/api/appsripts/login.php"; // for login verification
+//
+//                    String methods = params[0];
+//                    String name = params[1];
+//                    String password = params[2];
+//
+//                    try {
+//                        URL url = new URL(url_login);
+//                        try {
+//                            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+//                            urlConnection.setRequestMethod("POST");
+//                            urlConnection.setDoOutput(true);
+//                            urlConnection.setDoInput(true);
+//                            OutputStream os = urlConnection.getOutputStream();
+//                            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+//                            String dataLogin = URLEncoder.encode("username", "UTF-8") + "=" + URLEncoder.encode(name, "UTF-8") + "&" +
+//                                    URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(password, "UTF-8");
+//                            bw.write(dataLogin);
+//                            bw.flush();
+//                            bw.close();
+//                            os.close();
+//                            // to get the response
+//                            InputStream inputStream = urlConnection.getInputStream();
+//                            BufferedReader br = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+//                            String line = "";
+//                            String response = "";
+//                            while ((line = br.readLine()) != null) {
+//                                response += line;
+//
+//
+//                            }
+//                            inputStream.close();
+//                            br.close();
+//                            urlConnection.disconnect();
+//                            return response;
+//
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//
+//                    } catch (MalformedURLException e) {
+//                        e.printStackTrace();
+//                    }
+//
+//
+//                    return null;
+//
+//                }
+//
+//                @Override
+//                protected void onPostExecute(String result) {
+//                    s = result.trim();
+//                    // when the details from the php script is
+//                    if (!s.equalsIgnoreCase("failure")) {
+//                        pDialog.dismiss();
+//                        TextView ed = (TextView) findViewById(R.id.fname);
+//                        ed.setText(s);
+//
+//                    } else {
+//                        Toast.makeText(order.this, "Your food is already  processed.", Toast.LENGTH_LONG).show();
+//                        pDialog.dismiss();
+//                    }
+//
+//
+//                }
+//            }
+//            logBg logBack = new logBg(this);
+//        logBack.execute(methods, String.valueOf(us_IDs),fname);
+//            //  readJson();
+//        }
+//
+//
+//
+//
+//    void readJson() {
+//        if (s !=null) {
+//
+//
+//            // try to get json data from the server and saving them on the shared preference
+//            try {
+//                // to pass json objects
+//                // jsonArray = jsonObject.getJSONArray("result");
+//                // to get all jsonsdataint count
+//                //
+//                JSONObject jsonObject = new JSONObject(s);
+//                myemail = jsonObject.getString("U_ID");
+//                us_ID= Integer.parseInt(myemail);
+//                phone= jsonObject.getString("Phone");
+//                location = jsonObject.getString("Location");
+//                fname = jsonObject.getString("Fname");
+//
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//
+//
+////        } else {
+////            Toast.makeText(this, "null data", Toast.LENGTH_LONG).show();
+//
+//        }
+//    }
+//
+//
+//}
+//
+//
+//
+//
+//
+//
+//
+//
+//
