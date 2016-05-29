@@ -54,9 +54,9 @@ public class HomeMenu extends AppCompatActivity {
         tabs.setOnTabSelectedListener(tabsListener(vpager));
         navigationView = (NavigationView) findViewById(R.id.navigation_view);
         // to access navigation view
-        View headerview = navigationView.inflateHeaderView(R.layout.navheader);
-        TextView username = (TextView) headerview.findViewById(R.id.fname);
-        TextView email = (TextView) headerview.findViewById(R.id.email);
+
+        TextView username = (TextView) navigationView.findViewById(R.id.fname);
+        TextView email = (TextView) navigationView.findViewById(R.id.email);
 
         username.setText(uname);
         email.setText(uemail);

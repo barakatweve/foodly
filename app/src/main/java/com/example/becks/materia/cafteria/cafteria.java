@@ -22,7 +22,7 @@ import java.net.URL;
 public class cafteria extends AppCompatActivity {
     Context context;
     String myjresul=null;
-    private String url = "http://myfirstdatabase.esy.es/fetchData.php";
+    private String url = "http://foodly.pe.hu/api/appsripts/fetchData.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

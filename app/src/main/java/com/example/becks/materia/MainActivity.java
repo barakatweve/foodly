@@ -68,13 +68,10 @@ public class MainActivity extends AppCompatActivity {
            ;
         }
 
-      //  loginBackground();
 
     }
 
     // login method to verigy user information to database
-
-
     public void signUp(View v) {
         // to get the user details from the preference
          password = txt_password.getText().toString();
@@ -210,6 +207,7 @@ public class MainActivity extends AppCompatActivity {
                 fname = jsonObject.getString("Fname");
                 myemail = jsonObject.getString("Email");
 
+
                 //    writing on the shared Preference file
 
                 SharedPreferences  sharedpreferences=getSharedPreferences("USERS", Context.MODE_PRIVATE);
@@ -227,9 +225,6 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-
-//        } else {
-//            Toast.makeText(this, "null data", Toast.LENGTH_LONG).show();
 
         }
     }

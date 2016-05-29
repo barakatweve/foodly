@@ -32,18 +32,13 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 public class order extends AppCompatActivity {
-    // fetching order from the server
-    // private String url = "http://foodly.pe.hu/api/appsripts/fetchData.php";
-    private String jsonResult;
-    private JSONArray jsonArray;
+
     private String id;
-    TextView txtname, txtlocation, txttotal, txtphone;
-    private String name, phone, location, fname;
+    TextView txtname, txtlocation, txttotal, txtphone,txtfoname,txtquantity;
+    private String name, phone, location, fname,total,foodname,quantity;
     private String s;
     private String methods;
     private String myemail;
-    private int us_IDs;
-    private int us_ID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,147 +47,183 @@ public class order extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         txtname = (TextView) findViewById(R.id.fname);
-        txtlocation = (TextView) findViewById(R.id.Location);
+        txtlocation = (TextView) findViewById(R.id.location);
         txttotal = (TextView) findViewById(R.id.total);
-        txtphone = (TextView) findViewById(R.id.phone);
+        txtphone = (TextView) findViewById(R.id.phones);
+        txtfoname = (TextView) findViewById(R.id.fooname);
+        txtquantity = (TextView) findViewById(R.id.quantity);
+
+
         SharedPreferences sharedPreferences=getSharedPreferences("USERS",MODE_PRIVATE);
         String test=sharedPreferences.getString("fName"," ");
-        txtname.setText(test);
+        int userID=sharedPreferences.getInt("U_ID",0);
 
-        //        OrderBackground();
-//        readJson();
+         id=String.valueOf(userID);
+        //txtname.setText(test);
+        OrderBackground();
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
-}
+
 
 // the method to view the  order on  background
 
-//    void OrderBackground() {
-//
-//    class logBg extends AsyncTask<String, Void, String> {
-//                // constructor to for this backgrond
-//                ProgressDialog pDialog;
-//                Context context;
-//                AlertDialog alertDialog;
-//
-//                logBg(Context context) {
-//                    this.context = context;
-//                    pDialog = new ProgressDialog(context);
-//                    pDialog.setTitle("Connecting....");
-//                    pDialog.setMessage("PLease wait ...");
-//                    pDialog.setIndeterminate(true);
-//                    pDialog.setCancelable(true);
-//                    pDialog.show();
-//                }
-//
-//                @Override
-//                protected void onPreExecute() {
-//                    alertDialog = new AlertDialog.Builder(context).create();
-//                    alertDialog.setTitle("Connecting to the Services");
-//                }
-//
-//
-//                @Override
-//                protected String doInBackground(String... params) {
-//                    String url_login = "http://foodly.pe.hu/api/appsripts/login.php"; // for login verification
-//
-//                    String methods = params[0];
-//                    String name = params[1];
-//                    String password = params[2];
-//
-//                    try {
-//                        URL url = new URL(url_login);
-//                        try {
-//                            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-//                            urlConnection.setRequestMethod("POST");
-//                            urlConnection.setDoOutput(true);
-//                            urlConnection.setDoInput(true);
-//                            OutputStream os = urlConnection.getOutputStream();
-//                            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-//                            String dataLogin = URLEncoder.encode("username", "UTF-8") + "=" + URLEncoder.encode(name, "UTF-8") + "&" +
-//                                    URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(password, "UTF-8");
-//                            bw.write(dataLogin);
-//                            bw.flush();
-//                            bw.close();
-//                            os.close();
-//                            // to get the response
-//                            InputStream inputStream = urlConnection.getInputStream();
-//                            BufferedReader br = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
-//                            String line = "";
-//                            String response = "";
-//                            while ((line = br.readLine()) != null) {
-//                                response += line;
-//
-//
-//                            }
-//                            inputStream.close();
-//                            br.close();
-//                            urlConnection.disconnect();
-//                            return response;
-//
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }
-//
-//                    } catch (MalformedURLException e) {
-//                        e.printStackTrace();
-//                    }
-//
-//
-//                    return null;
-//
-//                }
-//
-//                @Override
-//                protected void onPostExecute(String result) {
-//                    s = result.trim();
-//                    // when the details from the php script is
-//                    if (!s.equalsIgnoreCase("failure")) {
-//                        pDialog.dismiss();
-//                        TextView ed = (TextView) findViewById(R.id.fname);
-//                        ed.setText(s);
-//
-//                    } else {
-//                        Toast.makeText(order.this, "Your food is already  processed.", Toast.LENGTH_LONG).show();
-//                        pDialog.dismiss();
-//                    }
-//
-//
-//                }
-//            }
-//            logBg logBack = new logBg(this);
-//        logBack.execute(methods, String.valueOf(us_IDs),fname);
-//            //  readJson();
-//        }
-//
-//
-//
-//
+    void OrderBackground() {
+
+        class logBg extends AsyncTask<String, Void, String> {
+            // constructor to for this backgrond
+            ProgressDialog pDialog;
+            Context context;
+            AlertDialog alertDialog;
+
+            logBg(Context context) {
+                this.context = context;
+                pDialog = new ProgressDialog(context);
+                pDialog.setTitle("Getting your orders....");
+                pDialog.setMessage("PLease wait ...");
+                pDialog.setIndeterminate(true);
+                pDialog.setCancelable(true);
+//                pDialog.show();
+            }
+
+            @Override
+            protected void onPreExecute() {
+                alertDialog = new AlertDialog.Builder(context).create();
+                alertDialog.setTitle("Connecting To Service..");
+            }
+
+
+            @Override
+
+            protected String doInBackground(String... params) {
+                String url_login = "http://foodly.pe.hu/api/appsripts//viewOrders.php"; // for login verification
+
+                String methods = params[0];
+                String uid = params[1];
+
+                try {
+                    URL url = new URL(url_login);
+                    try {
+                        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                        urlConnection.setRequestMethod("POST");
+                        urlConnection.setDoOutput(true);
+                        urlConnection.setDoInput(true);
+                        OutputStream os = urlConnection.getOutputStream();
+                        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+                        String dataLogin = URLEncoder.encode("U_ID", "UTF-8") + "=" + URLEncoder.encode(uid, "UTF-8");
+                        bw.write(dataLogin);
+                        bw.flush();
+                        bw.close();
+                        os.close();
+                        // to get the response
+                        InputStream inputStream = urlConnection.getInputStream();
+                        BufferedReader br = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+                        String line = "";
+                        String response = "";
+                        while ((line = br.readLine()) != null) {
+                            response += line;
+
+
+                        }
+                        inputStream.close();
+                        br.close();
+                        urlConnection.disconnect();
+                        return response;
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+
+
+                return null;
+
+            }
+
+            @Override
+            protected void onPostExecute(String result) {
+                s = result.trim();
+                // when the details from the php script is
+                if (!s.equalsIgnoreCase("failure")) {
+                  //  pDialog.dismiss();
+
+                    JSONObject jsonObject = null;
+                    try {
+                        jsonObject = new JSONObject(s);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        phone= jsonObject.getString("Phone");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        quantity = jsonObject.getString("Quantity");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        fname = jsonObject.getString("F_name");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        foodname = jsonObject.getString("Fo_name");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        location = jsonObject.getString("O_location");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        total = jsonObject.getString("Total");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                    txtname.setText(fname);
+                    txtphone.setText(phone);
+                    txtlocation.setText(location);
+                    txttotal.setText(total);
+                    txtquantity.setText(quantity);
+                    txtfoname.setText(foodname);
+
+
+
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"already saved", Toast.LENGTH_LONG).show();
+                }
+
+             }
+
+
+        }
+        logBg logBack = new logBg(getApplicationContext());
+        logBack.execute(methods, id);
+
+
+
+    }
+
+    // method to read json data from the server
 //    void readJson() {
 //        if (s !=null) {
-//
-//
-//            // try to get json data from the server and saving them on the shared preference
 //            try {
 //                // to pass json objects
 //                // jsonArray = jsonObject.getJSONArray("result");
 //                // to get all jsonsdataint count
 //                //
-//                JSONObject jsonObject = new JSONObject(s);
-//                myemail = jsonObject.getString("U_ID");
-//                us_ID= Integer.parseInt(myemail);
-//                phone= jsonObject.getString("Phone");
-//                location = jsonObject.getString("Location");
-//                fname = jsonObject.getString("Fname");
+//
+//                txttotal.setText(myemail+ phone+ fname);
+//
 //
 //            } catch (JSONException e) {
 //                e.printStackTrace();
@@ -203,16 +234,13 @@ public class order extends AppCompatActivity {
 ////            Toast.makeText(this, "null data", Toast.LENGTH_LONG).show();
 //
 //        }
+//        else
+//            Toast.makeText(getApplicationContext(),"Your order is already received", Toast.LENGTH_LONG).show();
 //    }
-//
-//
-//}
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+
+}
+
+
+
+
