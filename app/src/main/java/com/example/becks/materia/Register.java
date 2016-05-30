@@ -70,8 +70,14 @@ public class Register extends AppCompatActivity {
             Background backRegister = new Background(this);
             backRegister.execute(methods, fname, lname, email, phone, hostelname, password);
 
-            finish();
-        } else {
+            startActivity(new Intent(this,MainActivity.class));
+
+        }
+        else  if (fname.equals("") || phone.equals("")){
+            Toast.makeText(getApplicationContext(),"Fill all the fields",Toast.LENGTH_LONG).show();
+        }
+
+        else {
             if (!(password.equals(confirmpassword)))
                 Toast.makeText(Register.this, "Password do not  match", Toast.LENGTH_LONG).show();
 

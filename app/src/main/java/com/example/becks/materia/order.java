@@ -35,7 +35,7 @@ public class order extends AppCompatActivity {
 
     private String id;
     TextView txtname, txtlocation, txttotal, txtphone,txtfoname,txtquantity;
-    private String name, phone, location, fname,total,foodname,quantity;
+    private String phone, locations, fname,total,foodname,quantity;
     private String s;
     private String methods;
     private String myemail;
@@ -47,7 +47,7 @@ public class order extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         txtname = (TextView) findViewById(R.id.fname);
-        txtlocation = (TextView) findViewById(R.id.location);
+        txtlocation = (TextView) findViewById(R.id.mylocation);
         txttotal = (TextView) findViewById(R.id.total);
         txtphone = (TextView) findViewById(R.id.phones);
         txtfoname = (TextView) findViewById(R.id.fooname);
@@ -177,7 +177,7 @@ public class order extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     try {
-                        location = jsonObject.getString("O_location");
+                        locations = jsonObject.getString("O_location");
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -190,7 +190,7 @@ public class order extends AppCompatActivity {
 
                     txtname.setText(fname);
                     txtphone.setText(phone);
-                    txtlocation.setText(location);
+                    txtlocation.setText(locations);
                     txttotal.setText(total);
                     txtquantity.setText(quantity);
                     txtfoname.setText(foodname);
@@ -212,31 +212,6 @@ public class order extends AppCompatActivity {
 
 
     }
-
-    // method to read json data from the server
-//    void readJson() {
-//        if (s !=null) {
-//            try {
-//                // to pass json objects
-//                // jsonArray = jsonObject.getJSONArray("result");
-//                // to get all jsonsdataint count
-//                //
-//
-//                txttotal.setText(myemail+ phone+ fname);
-//
-//
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
-//
-//
-////        } else {
-////            Toast.makeText(this, "null data", Toast.LENGTH_LONG).show();
-//
-//        }
-//        else
-//            Toast.makeText(getApplicationContext(),"Your order is already received", Toast.LENGTH_LONG).show();
-//    }
 
 
 }

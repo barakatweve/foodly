@@ -150,7 +150,7 @@ public class Background extends AsyncTask<String, Void, String> {
         String s=result.trim();
 
         if (s.equals("you have successfull registerd")) {
-//            pDialog.dismiss();
+            pDialog.dismiss();
         Toast.makeText(context, result, Toast.LENGTH_LONG).show();
 
 
@@ -158,21 +158,13 @@ public class Background extends AsyncTask<String, Void, String> {
         // when the details from the php script is
         else{
             if (!s.equalsIgnoreCase("failure")){
+
+                Toast.makeText(context, "Registered Failed", Toast.LENGTH_LONG).show();
+
                 pDialog.dismiss();
-//                Intent intent=new Intent(context,HomeMenu.class);
-//                context.startActivity(intent);
-
-
-            }
-        else{
-
-//                Toast.makeText(context,"Invalid username or Password",Toast.LENGTH_LONG).show();
-//                pDialog.dismiss();
-//
- }
-
-
 
         }
     }
+    }
 }
+

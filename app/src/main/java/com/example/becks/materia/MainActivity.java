@@ -65,19 +65,18 @@ public class MainActivity extends AppCompatActivity {
         if (txt_name.equals("")) {
             txt_name.setText(sp_fname);
             setSupportActionBar(toolbar);
-           ;
+
         }
 
-
-    }
+     }
 
     // login method to verigy user information to database
     public void signUp(View v) {
         // to get the user details from the preference
          password = txt_password.getText().toString();
          name = txt_name.getText().toString();
-      loginBackground();
-        readJson();
+        loginBackground();
+
 
     }
 
@@ -168,8 +167,10 @@ public class MainActivity extends AppCompatActivity {
                 // when the details from the php script is
                 if (!s.equalsIgnoreCase("failure")) {
                     pDialog.dismiss();
+                    readJson();
                     TextView ed= (TextView) findViewById(R.id.text);
                     ed.setText("Welcome" +"  "+ fname+" ");
+
                     Intent intent = new Intent(getApplicationContext(), HomeMenu.class);
                     startActivity(intent);
 
