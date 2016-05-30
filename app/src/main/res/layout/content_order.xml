@@ -76,8 +76,7 @@
 
 
         <TextView
-
-            android:textSize="23sp"
+            android:textSize="20sp"
             android:textColor="#ffff299f"
             android:text="Location:"
             android:layout_width="70dp"
@@ -126,12 +125,11 @@
         android:layout_height="wrap_content"
         android:weightSum="1">
 
-
         <TextView
 
             android:textSize="22dp"
             android:textColor="#ffff299f"
-            android:text="Quantity: "
+            android:text="Quantity"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.47" />
@@ -158,7 +156,7 @@
             android:textSize="22dp"
             android:textColor="#ffff299f"
             android:text="Total Tshs: "
-            android:layout_width="70dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.45" />
         <TextView

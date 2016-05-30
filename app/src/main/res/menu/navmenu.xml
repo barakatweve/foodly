@@ -34,7 +34,7 @@
         <item
             android:id="@+id/logout"
             android:checked="false"
-            android:icon="@drawable/aboutus"
+            android:icon="@drawable/exit"
             android:title="Logout" />
 
 

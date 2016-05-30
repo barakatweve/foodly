@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -49,6 +50,17 @@ public class walinyamacafe extends AppCompatActivity {
         locations= (EditText) findViewById(R.id.txt_location);
         phonenumbers= (EditText) findViewById(R.id.txt_phonenumber);
         placeOrder= (Button) findViewById(R.id.btn_placeOrder);
+        Toolbar toolbar= (Toolbar) findViewById(R.id.backHome);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.back);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),HomeMenu.class));
+            }
+        });
+
+
 
     }
     public void Add(View v){
@@ -118,7 +130,7 @@ public class walinyamacafe extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
-            String url_order = "http://foodly.pe.hu/api/appsripts/orderingWaliNyama3.php"; // url for register users information
+            String url_order = "http://foodly.pe.hu/api/appsripts/orderingWalinyama3.php"; // url for register users information
             // for login verification
 
             String method = params[0];

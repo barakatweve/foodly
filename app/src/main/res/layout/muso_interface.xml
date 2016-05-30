@@ -4,8 +4,11 @@
     android:orientation="vertical"
     android:paddingBottom="40dp"
     tools:context=".MainActivity">
-    <include layout="@layout/app_bar2"
-        android:id="@+id/backHome"/>
+    <include
+        layout="@layout/app_bar2"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:id="@+id/backHome" />
     <TextView
         android:textAlignment="center"
         android:textColor="#000"
@@ -18,6 +21,7 @@ VIEW OUR AVAILABE MENU "
         android:id="@+id/textViews"/>
 
     <Button
+        android:textColor="#fff"
         android:background="#009688"
         android:text="View Menu"
         android:onClick="musoDisplay"

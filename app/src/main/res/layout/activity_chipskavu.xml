@@ -12,8 +12,8 @@
         android:id="@+id/include" />
 
     <Button
-        android:background="#00e676"
-        android:textSize="40dp"
+        android:background="#009688"
+        android:textSize="30dp"
         android:onClick="minus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
         android:layout_marginTop="47dp" />
 
     <Button
-        android:background="#00e676"
+        android:background="#009688"
         android:textSize="40dp"
         android:text="+"
         android:onClick="Add"
@@ -98,7 +98,7 @@
         android:layout_alignEnd="@+id/txt_phonenumber" />
 
     <Button
-        android:background="#00e676"
+        android:background="#009688"
         android:onClick="placeOrder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

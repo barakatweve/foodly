@@ -60,6 +60,10 @@ public class musomenu extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(),walikuku.class));
 
                 }
+                else if (txt.getText().equals("pilau nyama")){
+                    startActivity(new Intent(getApplicationContext(),walikuku.class));
+
+                }
             }
 
 

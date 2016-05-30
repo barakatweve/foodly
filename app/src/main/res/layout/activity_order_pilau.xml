@@ -9,11 +9,12 @@
     <include layout="@layout/app_bar2"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+id/include" />
+        android:id="@+id/backHome" />
 
     <Button
+        android:textColor="#fff"
         android:background="#009688"
-        android:textSize="40dp"
+        android:textSize="30dp"
         android:onClick="minus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,8 +25,10 @@
         android:layout_marginTop="47dp" />
 
     <Button
+        android:textColor="#fff"
         android:background="#009688"
-        android:textSize="40dp"
+        android:textSize="30dp"
+
         android:text="+"
         android:onClick="Add"
         android:layout_alignParentRight="true"
@@ -57,7 +60,7 @@
         android:layout_marginTop="10dp"
         android:layout_alignParentStart="true"
         android:layout_marginStart="55dp"
-        android:layout_below="@+id/include"
+        android:layout_below="@+id/backHome"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="60dp" />
 
@@ -97,6 +100,7 @@
         android:layout_alignEnd="@+id/txt_phonenumber" />
 
     <Button
+        android:textColor="#fff"
         android:background="#009688"
         android:onClick="placeOrder"
         android:layout_width="wrap_content"

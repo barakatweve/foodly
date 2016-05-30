@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,8 +54,20 @@ public class walikuku extends AppCompatActivity {
         sp_phone=sharedPreferences.getString("Phone","");
         sp_name=sharedPreferences.getString("fName"," Enter name");
         userID=sharedPreferences.getInt("U_ID", 0);
+        Toolbar toolbar= (Toolbar) findViewById(R.id.backHome);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.back);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),HomeMenu.class));
+            }
+        });
 
     }
+
+
+
     public void Add(View v){
 
         txt_count.setText(String.valueOf(counter));

@@ -95,53 +95,6 @@ public class Background extends AsyncTask<String, Void, String> {
             }
 
         }
-
-        // for login purpose
-        else if (method.equals("login")){
-
-            String methods=params[0];
-            String name=params[1];
-            String password=params[2];
-
-            try {
-                URL url=new URL(url_login);
-                try {
-                    HttpURLConnection urlConnection= (HttpURLConnection) url.openConnection();
-                    urlConnection.setRequestMethod("POST");
-                    urlConnection.setDoOutput(true);
-                    urlConnection.setDoInput(true);
-                    OutputStream os=urlConnection.getOutputStream();
-                    BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
-                String dataLogin=    URLEncoder.encode("username","UTF-8") +"="+URLEncoder.encode(name,"UTF-8")+"&"+
-                            URLEncoder.encode("password","UTF-8") +"="+URLEncoder.encode(password,"UTF-8");
-                    bw.write(dataLogin);
-                    bw.flush();
-                    bw.close();
-                    os.close();
-                    // to get the response
-                    InputStream inputStream=urlConnection.getInputStream();
-                    BufferedReader br=new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
-                    String line="";
-                    String response="";
-                    while ((line=br.readLine())!=null){
-                        response+=line;
-
-
-                    }
-                    inputStream.close();
-                    br.close();
-                    urlConnection.disconnect();
-                    return  response;
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-        }
-
         return null;
 
     }
@@ -153,18 +106,10 @@ public class Background extends AsyncTask<String, Void, String> {
             pDialog.dismiss();
         Toast.makeText(context, result, Toast.LENGTH_LONG).show();
 
-
         }
-        // when the details from the php script is
-        else{
-            if (!s.equalsIgnoreCase("failure")){
+        else    Toast.makeText(context, "Registered failed", Toast.LENGTH_LONG).show();
 
-                Toast.makeText(context, "Registered Failed", Toast.LENGTH_LONG).show();
-
-                pDialog.dismiss();
-
-        }
     }
-    }
+
 }
 

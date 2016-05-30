@@ -72,6 +72,7 @@ toolbar.setNavigationIcon(R.drawable.back);
         sp_name=sharedPreferences.getString("fName"," Enter name");
         userID=sharedPreferences.getInt("U_ID", 0);
 
+
      //   phonenumbers.setText(sp_phone);
        // locations.setText(sp_location);
 

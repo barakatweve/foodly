@@ -31,7 +31,7 @@ public class cafteriamenu extends AppCompatActivity {
     @Override
         protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.cafe_display);
+        setContentView(R.layout.cafteria);
         jsonData = getIntent().getExtras().getString("myjson");
         lsAdapter = new cafelistAdapter(this, R.layout.idm_items);
         listView = (ListView) findViewById(R.id.listView);
@@ -50,11 +50,19 @@ public class cafteriamenu extends AppCompatActivity {
 
                 }
 
-                else if (txt.getText().equals("wal nyama")){
+                else if (txt.getText().equals("wali nyama")){
                     startActivity(new Intent(getApplicationContext(),walinyamacafe.class));
 
                 }
                 else if (txt.getText().equals("wali kuku")){
+                    startActivity(new Intent(getApplicationContext(),walikukucafe.class));
+
+                }
+                else if (txt.getText().equals("pilau nyama")){
+                    startActivity(new Intent(getApplicationContext(),walikukucafe.class));
+
+                }
+                else if (txt.getText().equals("chips mayai")){
                     startActivity(new Intent(getApplicationContext(),walikukucafe.class));
 
                 }

@@ -17,6 +17,7 @@ VIEW OUR AVAILABE MENU "
         android:id="@+id/textViews"/>
 
     <Button
+        android:textColor="#fff"
         android:background="#009688"
         android:text="View Menu"
         android:onClick="cafeDisplay"

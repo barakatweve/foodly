@@ -115,7 +115,7 @@ public class walinyama extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
-            String url_order = "http://myfirstdatabase.esy.es/ordering.php"; // url for register users information
+            String url_order = "http://myfirstdatabase.esy.es/orderingNyama0.php"; // url for register users information
             // for login verification
 
             String method = params[0];

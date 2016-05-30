@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 pDialog.setMessage("PLease wait ...");
                 pDialog.setIndeterminate(true);
                 pDialog.setCancelable(false);
+                pDialog.setIcon(R.drawable.resticon);
                 pDialog.show();
             }
 

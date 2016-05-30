@@ -129,7 +129,7 @@ public class tambinyamacafe extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
-            String url_order = "http://foodly.pe.hu/api/appsripts/orderingtambinyama3.php"; // url for register users information
+            String url_order = "http://foodly.pe.hu/api/appsripts/orderingTambinyama3.php"; // url for register users information
             // for login verification
 
             String method = params[0];

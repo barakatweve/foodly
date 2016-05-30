@@ -66,7 +66,7 @@ public class Tab2Frag extends Fragment{
 
             movie.setName("AKO CAFTERIA FOODS");
 
-            movie.setImage(R.drawable.ako);
+            movie.setImage(R.drawable.ako2);
 
             mItems.add(movie);
             return mItems;
