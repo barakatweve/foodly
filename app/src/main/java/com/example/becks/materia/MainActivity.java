@@ -169,8 +169,6 @@ public class MainActivity extends AppCompatActivity {
                 if (!s.equalsIgnoreCase("failure")) {
                     pDialog.dismiss();
                     readJson();
-                    TextView ed= (TextView) findViewById(R.id.text);
-                    ed.setText("Welcome" +"  "+ fname+" ");
 
                     Intent intent = new Intent(getApplicationContext(), HomeMenu.class);
                     startActivity(intent);

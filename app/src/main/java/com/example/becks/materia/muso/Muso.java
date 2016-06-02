@@ -36,7 +36,7 @@ import java.util.List;
 public class Muso extends AppCompatActivity {
     Context context;
     String myjresul=null;
-    private String url = "http://foodly.pe.hu/api/appsripts/fetchData.php";
+    private String url = "http://foodly.pe.hu/api/appsripts/fetchMuso.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
