@@ -60,7 +60,7 @@ public class tambinyamaMuso extends AppCompatActivity {
     Button btn_minus, btn_adds,placeOrder;
     private EditText course;
     //Integer phonenumber=null;
-    private int counter=1;
+    private int counter=1,sp_phone2;
     private SharedPreferences sharedPreferences;
     String sp_location,sp_name,sp_phone;
     int userID;
@@ -77,11 +77,14 @@ public class tambinyamaMuso extends AppCompatActivity {
         locations= (EditText) findViewById(R.id.txt_location);
         phonenumbers= (EditText) findViewById(R.id.txt_phonenumber);
         placeOrder= (Button) findViewById(R.id.btn_placeOrder);
-        sharedPreferences=getSharedPreferences("USERS",MODE_PRIVATE);
-        sp_location=sharedPreferences.getString("Location"," ");
-        sp_phone=sharedPreferences.getString("Phone","");
-        sp_name=sharedPreferences.getString("fName"," Enter name");
-        userID=sharedPreferences.getInt("U_ID", 0);
+        sharedPreferences = getSharedPreferences("USERS", MODE_PRIVATE);
+        sp_location = sharedPreferences.getString("Location", " ");
+        sp_phone = sharedPreferences.getString("Phone", "");
+        sp_phone2= Integer.parseInt(sp_phone);
+        sp_name = sharedPreferences.getString("fName", " Enter name");
+        userID = sharedPreferences.getInt("U_ID", 0);
+        locations.setText(sp_location);
+        phonenumbers.setText(sp_phone);
         Toolbar toolbar= (Toolbar) findViewById(R.id.backHome);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.back);
@@ -114,24 +117,23 @@ public class tambinyamaMuso extends AppCompatActivity {
 
         int quantity = Integer.parseInt(txt_count.getText().toString());
         int total = Integer.parseInt(txt_total.getText().toString());
-        String uname=sp_name;
-        int u_id=userID;
-        //phonenumbers.setText(Register.phone);
-
-        String phonenumber =phonenumbers.getText().toString().trim();
+        int  phonenumber = Integer.parseInt((phonenumbers.getText().toString()));
         String location = locations.getText().toString();
+        String uname = sp_name;
+        int u_id = userID;
+        if (location.equals(sp_location) && phonenumbers.equals(String.valueOf(phonenumber))){
+            String message = "register";
+            sendorderBackg bo = new sendorderBackg(this);
+            bo.execute(message, String.valueOf(sp_phone2), sp_location, String.valueOf(quantity), String.valueOf(total), uname, String.valueOf(u_id));
+        }
+        else
+        {
 
-        if (!(location.equals("") && phonenumber.equals("")) ) {
             String message = "register";
 
             sendorderBackg bo = new sendorderBackg(this);
 
-            bo.execute(message,String.valueOf(phonenumber),location,String.valueOf(quantity),String.valueOf(total),uname,String.valueOf(u_id));
-
-        }
-        else{
-
-            Toast.makeText(getApplicationContext(), "Please fill the filled above with the right details", Toast.LENGTH_LONG).show();
+            bo.execute(message, String.valueOf(phonenumber),location,String.valueOf(quantity), String.valueOf(total), uname, String.valueOf(u_id));
 
         }
     }

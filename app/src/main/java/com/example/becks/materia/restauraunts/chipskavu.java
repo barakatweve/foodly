@@ -33,10 +33,10 @@ public class chipskavu extends AppCompatActivity {
     Button btn_minus, btn_adds,placeOrder;
     private EditText course;
     //Integer phonenumber=null;
-    private int counter=1;
+    private int counter = 1,sp_phone2;
+    private String sp_location, sp_phone, sp_name;
+    private int userID;
     private SharedPreferences sharedPreferences;
-    int userID;
-    private String sp_phone, sp_location,sp_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,11 +50,14 @@ public class chipskavu extends AppCompatActivity {
         locations= (EditText) findViewById(R.id.txt_location);
         phonenumbers= (EditText) findViewById(R.id.txt_phonenumber);
         placeOrder= (Button) findViewById(R.id.btn_placeOrder);
-        sharedPreferences=getSharedPreferences("USERS",MODE_PRIVATE);
-        sp_location=sharedPreferences.getString("Location"," ");
-        sp_phone=sharedPreferences.getString("Phone","");
-        sp_name=sharedPreferences.getString("fName"," Enter name");
-        userID=sharedPreferences.getInt("U_ID", 0);
+        sharedPreferences = getSharedPreferences("USERS", MODE_PRIVATE);
+        sp_location = sharedPreferences.getString("Location", " ");
+        sp_phone = sharedPreferences.getString("Phone", "");
+        sp_phone2= Integer.parseInt(sp_phone);
+        sp_name = sharedPreferences.getString("fName", " Enter name");
+        userID = sharedPreferences.getInt("U_ID", 0);
+        locations.setText(sp_location);
+        phonenumbers.setText(sp_phone);
         Toolbar toolbar= (Toolbar) findViewById(R.id.backHome);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.back);
@@ -89,24 +92,23 @@ public class chipskavu extends AppCompatActivity {
 
         int quantity = Integer.parseInt(txt_count.getText().toString());
         int total = Integer.parseInt(txt_total.getText().toString());
-        //phonenumbers.setText(Register.phone);
-
-        String phonenumber =phonenumbers.getText().toString().trim();
+        int  phonenumber = Integer.parseInt((phonenumbers.getText().toString()));
         String location = locations.getText().toString();
-        String uname=sp_name;
-        int u_id=userID;
+        String uname = sp_name;
+        int u_id = userID;
+        if (location.equals(sp_location) && phonenumbers.equals(String.valueOf(phonenumber))){
+            String message = "register";
+            sendorderBackg bo = new sendorderBackg(this);
+            bo.execute(message, String.valueOf(sp_phone2), sp_location, String.valueOf(quantity), String.valueOf(total), uname, String.valueOf(u_id));
+        }
+        else
+        {
 
-        if (!(location.equals("") && phonenumber.equals("")) ) {
             String message = "register";
 
             sendorderBackg bo = new sendorderBackg(this);
 
-            bo.execute(message,String.valueOf(phonenumber),location,String.valueOf(quantity),String.valueOf(total),uname,String.valueOf(u_id));
-
-        }
-        else{
-
-            Toast.makeText(getApplicationContext(), "Please fill the filled above with the right details", Toast.LENGTH_LONG).show();
+            bo.execute(message, String.valueOf(phonenumber),location,String.valueOf(quantity), String.valueOf(total), uname, String.valueOf(u_id));
 
         }
     }
@@ -160,11 +162,11 @@ public class chipskavu extends AppCompatActivity {
                         OutputStream os = urlConnection.getOutputStream();
                         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
                         String data = URLEncoder.encode("phonenumber", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(phone), "UTF-8") + "&" +
-                                URLEncoder.encode("location","UTF-8") +"="+URLEncoder.encode(location,"UTF-8")+"&"+
+                                URLEncoder.encode("location", "UTF-8") + "=" + URLEncoder.encode(location, "UTF-8") + "&" +
                                 //  URLEncoder.encode("fname","UTF-8") +"="+URLEncoder.encode(fname,"UTF-8")+"&"+
-                                URLEncoder.encode("quantity","UTF-8") +"="+URLEncoder.encode(String.valueOf(quantity),"UTF-8")+"&"+
-                                URLEncoder.encode("total","UTF-8") +"="+URLEncoder.encode(String.valueOf(total),"UTF-8")+"&"+
-                                URLEncoder.encode("fname","UTF-8") +"="+URLEncoder.encode(fname,"UTF-8")+"&"+
+                                URLEncoder.encode("quantity", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(quantity), "UTF-8") + "&" +
+                                URLEncoder.encode("total", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(total), "UTF-8") + "&" +
+                                URLEncoder.encode("fname", "UTF-8") + "=" + URLEncoder.encode(fname, "UTF-8") + "&" +
                                 URLEncoder.encode("userID", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(userID), "UTF-8");
                         bw.write(data);
                         bw.flush();

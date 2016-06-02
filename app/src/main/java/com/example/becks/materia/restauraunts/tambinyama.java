@@ -29,13 +29,13 @@ import java.net.URLEncoder;
 
 public class tambinyama extends AppCompatActivity {
     TextView txt_total, txt_count;
-    EditText locations,phonenumbers;
-    Button btn_minus, btn_adds,placeOrder;
+    EditText locations, phonenumbers;
+    Button btn_minus, btn_adds, placeOrder;
     private EditText course;
     //Integer phonenumber=null;
-    private int counter=1;
+    private int counter = 1, sp_phone2;
     private SharedPreferences sharedPreferences;
-    String sp_location,sp_name,sp_phone;
+    String sp_location, sp_name, sp_phone;
     int userID;
 
     @Override
@@ -43,44 +43,48 @@ public class tambinyama extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_chips);
 
-        txt_total= (TextView) findViewById(R.id.theTotals);
+        txt_total = (TextView) findViewById(R.id.theTotals);
         txt_count = (TextView) findViewById(R.id.txt_number);
         btn_adds = (Button) findViewById(R.id.plus);
         btn_minus = (Button) findViewById(R.id.minus);
-        locations= (EditText) findViewById(R.id.txt_location);
-        phonenumbers= (EditText) findViewById(R.id.txt_phonenumber);
-        placeOrder= (Button) findViewById(R.id.btn_placeOrder);
-        sharedPreferences=getSharedPreferences("USERS",MODE_PRIVATE);
-        sp_location=sharedPreferences.getString("Location"," ");
-        sp_phone=sharedPreferences.getString("Phone","");
-        sp_name=sharedPreferences.getString("fName"," Enter name");
-        userID=sharedPreferences.getInt("U_ID", 0);
-        Toolbar toolbar= (Toolbar) findViewById(R.id.backHome);
+        locations = (EditText) findViewById(R.id.txt_location);
+        phonenumbers = (EditText) findViewById(R.id.txt_phonenumber);
+        placeOrder = (Button) findViewById(R.id.btn_placeOrder);
+        sharedPreferences = getSharedPreferences("USERS", MODE_PRIVATE);
+        sp_location = sharedPreferences.getString("Location", " ");
+        sp_phone = sharedPreferences.getString("Phone", "");
+        sp_phone2 = Integer.parseInt(sp_phone);
+        sp_name = sharedPreferences.getString("fName", " Enter name");
+        userID = sharedPreferences.getInt("U_ID", 0);
+        locations.setText(sp_location);
+        phonenumbers.setText(sp_phone);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.backHome);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.back);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),HomeMenu.class));
+                startActivity(new Intent(getApplicationContext(), HomeMenu.class));
             }
         });
 
     }
 
 
-
-    public void Add(View v){
+    public void Add(View v) {
 
         txt_count.setText(String.valueOf(counter));
-        txt_total.setText(String.valueOf(2300*counter));
+        txt_total.setText(String.valueOf(2300 * counter));
         counter++;
 
     }
-    public void minus(View v){
-        if (counter>=1) {
+
+    public void minus(View v) {
+        if (counter >= 1) {
             counter--;
             txt_count.setText(String.valueOf(counter));
-            txt_total.setText(String.valueOf(2300*counter));
+            txt_total.setText(String.valueOf(2300 * counter));
         }
 
 
@@ -88,29 +92,8 @@ public class tambinyama extends AppCompatActivity {
 
     public void placeOrder(View view) {
 
-        int quantity = Integer.parseInt(txt_count.getText().toString());
-        int total = Integer.parseInt(txt_total.getText().toString());
-        String uname=sp_name;
-        int u_id=userID;
-        //phonenumbers.setText(Register.phone);
 
-        String phonenumber =phonenumbers.getText().toString().trim();
-        String location = locations.getText().toString();
-
-        if (!(location.equals("") && phonenumber.equals("")) ) {
-            String message = "register";
-
-            sendorderBackg bo = new sendorderBackg(this);
-
-            bo.execute(message,String.valueOf(phonenumber),location,String.valueOf(quantity),String.valueOf(total),uname,String.valueOf(u_id));
-
-        }
-        else{
-
-            Toast.makeText(getApplicationContext(), "Please fill the filled above with the right details", Toast.LENGTH_LONG).show();
-
-        }
-    }
+}
 
     // class for background processs on sending order to the the server
     public class sendorderBackg extends AsyncTask<String,Void,String> {
@@ -144,10 +127,12 @@ public class tambinyama extends AppCompatActivity {
             String method = params[0];
 // for  send the user order information to the server
             if (method.equals("register")) {
-                String phone = params[1];
+                int phone = Integer.parseInt(params[1]);
                 String location = params[2];
                 int quantity = Integer.parseInt(params[3]);
                 int total = Integer.parseInt(params[4]);
+                String fname = params[5];
+                int userID = Integer.parseInt(params[6]);
 
                 try {
                     URL url = new URL(url_order);
@@ -157,11 +142,13 @@ public class tambinyama extends AppCompatActivity {
                         urlConnection.setDoOutput(true);
                         OutputStream os = urlConnection.getOutputStream();
                         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-                        String data = URLEncoder.encode("phonenumber", "UTF-8") + "=" + URLEncoder.encode(phone, "UTF-8") + "&" +
-
-                                URLEncoder.encode("location","UTF-8") +"="+URLEncoder.encode(location,"UTF-8")+"&"+
-                                URLEncoder.encode("quantity","UTF-8") +"="+URLEncoder.encode(String.valueOf(quantity),"UTF-8")+"&"+
-                                URLEncoder.encode("total", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(total), "UTF-8");
+                        String data = URLEncoder.encode("phonenumber", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(phone), "UTF-8") + "&" +
+                                URLEncoder.encode("location", "UTF-8") + "=" + URLEncoder.encode(location, "UTF-8") + "&" +
+                                //  URLEncoder.encode("fname","UTF-8") +"="+URLEncoder.encode(fname,"UTF-8")+"&"+
+                                URLEncoder.encode("quantity", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(quantity), "UTF-8") + "&" +
+                                URLEncoder.encode("total", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(total), "UTF-8") + "&" +
+                                URLEncoder.encode("fname", "UTF-8") + "=" + URLEncoder.encode(fname, "UTF-8") + "&" +
+                                URLEncoder.encode("userID", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(userID), "UTF-8");
                         bw.write(data);
                         bw.flush();
                         bw.close();
