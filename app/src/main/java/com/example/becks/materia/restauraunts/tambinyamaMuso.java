@@ -43,6 +43,7 @@ import android.widget.Toast;
 
 import com.example.becks.materia.HomeMenu;
 import com.example.becks.materia.R;
+import com.example.becks.materia.muso.Muso;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -215,7 +216,8 @@ public class tambinyamaMuso extends AppCompatActivity {
                 Toast.makeText(context, result, Toast.LENGTH_LONG).show();
                 //alertDialog.setMessage(result);
                 pDialog.dismiss();
-                context.startActivity(new Intent(context,HomeMenu.class));
+                finish();
+                context.startActivity(new Intent(context,Muso.class));
             }
         }
     }

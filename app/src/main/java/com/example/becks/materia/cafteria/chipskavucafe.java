@@ -49,6 +49,7 @@ import android.widget.Toast;
 
 import com.example.becks.materia.HomeMenu;
 import com.example.becks.materia.R;
+import com.example.becks.materia.restauraunts.chips;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -128,7 +129,19 @@ public class chipskavucafe extends AppCompatActivity {
         String location = locations.getText().toString();
         String uname = sp_name;
         int u_id = userID;
-        if (location.equals(sp_location) && phonenumbers.equals(String.valueOf(phonenumber))){
+        if (quantity==0){
+            Toast.makeText(getApplicationContext(),"Order Atleast One Quantity",Toast.LENGTH_LONG).show();
+        }
+        else if(location.equals("")){
+            Toast.makeText(getApplicationContext(),"Enter Location Please",Toast.LENGTH_LONG).show();
+
+        }
+        else if(phonenumber <= 9){
+            Toast.makeText(getApplicationContext(),"Enter Valid Phone Number!!",Toast.LENGTH_LONG).show();
+
+        }
+
+        else if(location.equals(sp_location) && phonenumbers.equals(String.valueOf(phonenumber))){
             String message = "register";
             sendorderBackg bo = new sendorderBackg(this);
             bo.execute(message, String.valueOf(sp_phone2), sp_location, String.valueOf(quantity), String.valueOf(total), uname, String.valueOf(u_id));
@@ -226,7 +239,8 @@ public class chipskavucafe extends AppCompatActivity {
                 Toast.makeText(context, result, Toast.LENGTH_LONG).show();
                 //alertDialog.setMessage(result);
                 pDialog.dismiss();
-                context.startActivity(new Intent(context,HomeMenu.class));
+                finish();
+                context.startActivity(new Intent(context,cafteria.class));
             }
         }
     }

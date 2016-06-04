@@ -11,10 +11,6 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.becks.materia.MainActivity"
     tools:showIn="@layout/activity_main">
-
-
-
-
         <EditText
             android:singleLine="true"
             android:layout_width="wrap_content"

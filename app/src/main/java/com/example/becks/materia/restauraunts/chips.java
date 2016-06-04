@@ -47,12 +47,12 @@ public class chips extends AppCompatActivity {
                         break;
 
                     case 2:
-                        intent=new Intent(chips.this,wali.class);
+                        intent=new Intent(chips.this,OrderChips.class);
                         startActivity(intent);
                         break;
 
                     case 3:
-                        intent=new Intent(chips.this,wali.class);
+                        intent=new Intent(chips.this,OrderChips.class);
                         startActivity(intent);
                         break;
 
