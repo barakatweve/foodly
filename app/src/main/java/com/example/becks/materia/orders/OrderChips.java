@@ -167,7 +167,7 @@ public class OrderChips extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
-            String url_order = "http://foodly.pe.hu/api/appsripts/orderingTambi2.php"; // url for register users information
+            String url_order = "http://foodly.pe.hu/api/appsripts/orderingChips0.php"; // url for register users information
             // for login verification
 
             String method = params[0];
