@@ -44,14 +44,24 @@ public class order extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         txtname = (TextView) findViewById(R.id.fname);
         txtlocation = (TextView) findViewById(R.id.mylocation);
         txttotal = (TextView) findViewById(R.id.total);
         txtphone = (TextView) findViewById(R.id.phones);
         txtfoname = (TextView) findViewById(R.id.fooname);
         txtquantity = (TextView) findViewById(R.id.quantity);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.backHome);
+//        setSupportActionBar(toolbar);
+//        toolbar.setNavigationIcon(R.drawable.back);
+//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                finish();
+//                startActivity(new Intent(getApplicationContext(), HomeMenu.class));
+//            }
+//        });
+
+
 
 
         SharedPreferences sharedPreferences=getSharedPreferences("USERS",MODE_PRIVATE);
@@ -212,6 +222,7 @@ public class order extends AppCompatActivity {
 
 
     }
+
 
 
 }

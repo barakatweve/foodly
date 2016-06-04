@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.becks.materia.HomeMenu;
 import com.example.becks.materia.R;
+import com.example.becks.materia.adapters.recAdapter2;
 import com.example.becks.materia.muso.Muso;
 
 import java.io.BufferedWriter;
@@ -214,7 +215,7 @@ public class walinyamaMuso extends AppCompatActivity {
                 //alertDialog.setMessage(result);
                 pDialog.dismiss();
                 finish();
-                context.startActivity(new Intent(context,Muso.class));
+                context.startActivity(new Intent(context,recAdapter2.class));
             }
         }
     }

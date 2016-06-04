@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.becks.materia.HomeMenu;
 import com.example.becks.materia.R;
+import com.example.becks.materia.adapters.recAdapter2;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -199,6 +200,7 @@ public class tambinyamacafe extends AppCompatActivity {
                 Toast.makeText(context, result, Toast.LENGTH_LONG).show();
                 //alertDialog.setMessage(result);
                 pDialog.dismiss();
+                finish();
                 context.startActivity(new Intent(context,HomeMenu.class));
             }
         }

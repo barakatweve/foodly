@@ -21,19 +21,17 @@ public class share extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_share);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//        getSupportActionBar().setTitle("Share");
-//
-//        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.back));
-//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent back = new Intent(getApplicationContext(), HomeMenu.class);
-//                startActivity(back);
-//            }
-//        });
+        setContentView(R.layout.content_share);Toolbar toolbar = (Toolbar) findViewById(R.id.backHome);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.back);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                startActivity(new Intent(getApplicationContext(), HomeMenu.class));
+            }
+        });
+
 
         textShare = (EditText) findViewById(R.id.textShare);
         buttonShare = (Button) findViewById(R.id.buttonShare);

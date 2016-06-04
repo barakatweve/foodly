@@ -97,7 +97,9 @@ public class HomeMenu extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(),editProfil.class));
                         return  true;
                     case R.id.logout:
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
                         return  true;
 
 
@@ -187,7 +189,10 @@ public class HomeMenu extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedpreferences.edit();
                 editor.clear();
                 editor.commit();
-                startActivity(new Intent(this, MainActivity.class));
+                // to clear all the activities on the top of MainActivity
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

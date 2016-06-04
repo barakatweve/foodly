@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,7 +17,9 @@ import android.widget.Toast;
 
 import com.example.becks.materia.HomeMenu;
 import com.example.becks.materia.IDM.Idm;
+import com.example.becks.materia.MainActivity;
 import com.example.becks.materia.R;
+import com.example.becks.materia.adapters.recAdapter2;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -77,7 +80,7 @@ public class tambinyama extends AppCompatActivity {
     public void Add(View v) {
 
         txt_count.setText(String.valueOf(counter));
-        txt_total.setText(String.valueOf(2300 * counter));
+        txt_total.setText(String.valueOf(1800 * counter));
         counter++;
 
     }
@@ -86,7 +89,7 @@ public class tambinyama extends AppCompatActivity {
         if (counter >= 1) {
             counter--;
             txt_count.setText(String.valueOf(counter));
-            txt_total.setText(String.valueOf(2300 * counter));
+            txt_total.setText(String.valueOf(1800 * counter));
         }
 
 
@@ -220,12 +223,33 @@ public class tambinyama extends AppCompatActivity {
                 //alertDialog.setMessage(result);
                 pDialog.dismiss();
                 finish();
-                context.startActivity(new Intent(context,Idm.class));
+                context.startActivity(new Intent(context,HomeMenu.class));
             }
         }
     }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.logout:
+                SharedPreferences sharedpreferences = getSharedPreferences("USERS", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.clear();
+                editor.commit();
+                // to clear all the activities on the top of MainActivity
+                sharedpreferences = getSharedPreferences("USERS", Context.MODE_PRIVATE);
+                editor = sharedpreferences.edit();
+                editor.clear();
+                editor.commit();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
 
+    }
 
-}
+    }
 
 

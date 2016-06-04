@@ -61,8 +61,6 @@ public class OrderTambi extends AppCompatActivity {
         userID = sharedPreferences.getInt("U_ID", 0);
         locations.setText(sp_location);
         phonenumbers.setText(sp_phone);
-
-
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.back);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
