@@ -11,7 +11,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -32,6 +36,9 @@ public class Register extends AppCompatActivity {
     private SharedPreferences sharedpreferences;
     static String UserDetails = "U_registration";
     private String methods;
+    private String s;
+    private String phonverify;
+    private TextView textve;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +72,7 @@ public class Register extends AppCompatActivity {
         if ((fname.equals("")) || (email.equals("")) || (phone.equals("")||hostelname.equals(""))) {
             Toast.makeText(getApplicationContext(), "Fill all the fileds",Toast.LENGTH_LONG).show();
         }
-        else if((password.length()<=8)){
+        else if((password.length()<8)){
             Toast.makeText(getApplicationContext(), "Password should be long", Toast.LENGTH_LONG).show();
 
         }
@@ -86,6 +93,7 @@ public class Register extends AppCompatActivity {
 
         else {
          registerUser();
+            //
         }
 
     }
@@ -117,7 +125,7 @@ public class Register extends AppCompatActivity {
             @Override
             protected String doInBackground(String... params) {
                 String url_register = "http://foodly.pe.hu/api/appsripts/registerFoodly.php"; // url for register users information
-                String url_login = "http://foodly.pe.hu/api/appsripts/login.php"; // for login verification
+               // String url_login = "http://foodly.pe.hu/api/appsripts/login.php"; // for login verification
 
                 String method = params[0];
 // for registration and send the user information to the server
@@ -147,11 +155,22 @@ public class Register extends AppCompatActivity {
                             bw.flush();
                             bw.close();
                             os.close();
-                            // to get the responsivenes from the server
-                            InputStream is = urlConnection.getInputStream();
-                            // since there is no script in the phpscript
-                            is.close();
-                            return "successfully registered..";
+
+
+                            // to get the response
+                            InputStream inputStream = urlConnection.getInputStream();
+                            BufferedReader br = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+                            String line = "";
+                            String response = "";
+                            while ((line = br.readLine()) != null) {
+                                response += line;
+
+
+                            }
+                            inputStream.close();
+                            br.close();
+                            urlConnection.disconnect();
+                            return response;
 
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -168,19 +187,19 @@ public class Register extends AppCompatActivity {
 
             @Override
             protected void onPostExecute(String result) {
-                String s = result.trim().toString();
-                if (! s.equalsIgnoreCase("fail")) {
-                    pDialog.dismiss();
-                    Toast.makeText(context, s, Toast.LENGTH_LONG).show();
+                 s = result.trim().toString();
+                if ( !s.equalsIgnoreCase("fail")) {
+                    textve= (TextView) findViewById(R.id.vphone);
+                    textve.setText(phonverify);
+                      Toast.makeText(context, "successfully registered...", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
+                } else {
 
 
-                } else
-
-                    Toast.makeText(context, "User Already Exist", Toast.LENGTH_LONG).show();
-
-
+                    pDialog.dismiss();
+                    Toast.makeText(context, "The phoneNumber exists", Toast.LENGTH_LONG).show();
+                }
             }
         }
 Background bo=new Background(this);
@@ -188,6 +207,7 @@ Background bo=new Background(this);
 
 
     }
+
 }
 
 
